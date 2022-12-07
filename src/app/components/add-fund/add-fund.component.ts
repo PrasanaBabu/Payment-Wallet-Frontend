@@ -14,7 +14,7 @@ export class AddFundComponent {
   msgs: Message[] = [];
   errMsg: string;
   msgGotBack: any;
-  userId: number;
+  userId: number = WalletService.currentUserId;
   amountToAdd = "";
   transaction: Transaction = new Transaction();
 
@@ -93,26 +93,27 @@ export class AddFundComponent {
         {
           next: data => {
             this.msgGotBack = data;
-            if (this.msgGotBack == "Amount to add must be greater than or equal to 1") {
-              this.errMsg = "Amount Too Less to add. Minimum amount = 1 ";
-              console.error("min amount got");
-              
-              this.minAmountToast();
-            }
-            else if(this.msgGotBack.includes(' Invalid ID')){
-              this.errMsg = "Invalid Id"
-              this.invalidIdToast();
-            }
-            else{
+            
+            
               this.successToast();
               this.errMsg = ""
-            }
+            
           },
           error: err => {
-            this.errMsg = err;
-            
-              this.errMsg = "Invalid Id"
-              this.invalidIdToast();
+            this.errMsg = err.error;
+            this.msgGotBack = this.errMsg;
+              
+              if (this.msgGotBack == "Amount to add must be greater than or equal to 1") {
+                this.errMsg = "Amount Too Less to add. Minimum amount = 1 ";
+                console.error("min amount got");
+                
+                this.minAmountToast();
+              }
+              else if(this.msgGotBack.includes(' Invalid ID')){
+                this.errMsg = "Invalid Id"
+                this.invalidIdToast();
+              }
+              
             
             
           }

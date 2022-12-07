@@ -76,6 +76,7 @@ export class LoginComponent {
         summary: 'Logged In ',
         detail: 'You are now logged in you may procedd to use other services of the application .'
       });
+      WalletService.setCurrectUser(this.newWallet.id);
   }
   failToast() {
     this.messageService.add(

@@ -72,7 +72,7 @@
         />
       </div>
       <div
-        *ngIf="'(f.submitted && id.errors) || (id.touched && id.errors)'"
+        *ngIf="f.submitted && id.errors"
         class="invalid-feedback"
       >
         <div *ngIf="id.errors['required']">ID is required</div>

@@ -4,8 +4,8 @@
     padding: 5px 10% 5px 10%;
   }
 </style>
-
-<div style="padding: 10% 10% 10% 10%" class="login-form">
+<p-toast></p-toast>
+<div style="padding: 10% 10% 10% 10%" class="add-form">
   <form
     name="form" 
     #f="ngForm" 
@@ -20,12 +20,13 @@
           type="text"
           pTooltip="Enter your user ID"
           tooltipPosition="top"
-          tooltipEvent="focus"
+          tooltipEvent="hover"
           [(ngModel)]="userId"
           name="userId"
           pInputText
           #id="ngModel"
           required
+          disabled
           placeholder="User ID"
           [ngClass]="{ 'is-invalid': f.submitted && id.errors }"
 

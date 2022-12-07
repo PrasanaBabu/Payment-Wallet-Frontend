@@ -32,6 +32,7 @@ import {TooltipModule} from 'primeng/tooltip';
 
 import {ToastModule} from 'primeng/toast';
 import { UserAuthGuard } from './guard/user-auth.guard';
+import { BalanceComponent } from './components/balance/balance.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { UserAuthGuard } from './guard/user-auth.guard';
     WithdrawComponent,
     TransferComponent,
     UnregisterComponent,
-    MatchPasswordDirective
+    MatchPasswordDirective,
+    BalanceComponent
   ],
   imports: [
     BrowserModule,

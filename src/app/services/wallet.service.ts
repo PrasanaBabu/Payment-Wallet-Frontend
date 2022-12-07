@@ -10,6 +10,18 @@ import { UserAuthGuard } from '../guard/user-auth.guard';
 })
 export class WalletService {
 
+  static userActive: boolean;
+  static currentUserId: number;
+
+  public static setCurrectUser(curentUser: number){
+    this.userActive = true;
+    this.currentUserId = curentUser;
+  }
+  public static removeUser(){
+    this.userActive = false;
+    this.currentUserId = -1;
+  }
+
   constructor(private httpClient: HttpClient,
     private auth: UserAuthGuard) { }
 
@@ -22,6 +34,17 @@ export class WalletService {
       "http://localhost:8080/wallet/new",
       newWallet,
       { responseType: "text" });
+  }
+
+
+  public transfer(transaction: Transaction):Observable<any>{
+    console.log("Inside transfer service");
+
+    return (this.httpClient.post(
+      "http://localhost:8080/wallet/transfer",
+      transaction,
+      { responseType: "text" })
+    );
   }
 
   public withdraw(transaction: Transaction): Observable<any> {
