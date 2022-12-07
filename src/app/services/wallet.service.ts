@@ -3,18 +3,22 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Wallet } from '../dto/wallet';
 import { Transaction } from '../dto/transaction';
+import { UserAuthGuard } from '../guard/user-auth.guard';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WalletService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient,
+    private auth: UserAuthGuard) { }
+
+    currentUserId = this.auth.loggedInUserId;
 
   public addNewUser(newWallet: Wallet): Observable<any> {
     console.log("Inside add new user service");
 
-    return this.httpClient.patch(
+    return this.httpClient.post(
       "http://localhost:8080/wallet/new",
       newWallet,
       { responseType: "text" });
@@ -23,7 +27,7 @@ export class WalletService {
   public withdraw(transaction: Transaction): Observable<any> {
     console.log("Inside withdraw service");
 
-    return (this.httpClient.post(
+    return (this.httpClient.patch(
       "http://localhost:8080/wallet/withdraw",
       transaction,
       { responseType: "text" })
@@ -61,5 +65,16 @@ export class WalletService {
       }
 
     );
+  }
+
+  public login(wallet: Wallet): Observable<any>{
+
+   
+    return this.httpClient.post(
+      "http://localhost:8080/wallet/login",
+      wallet,
+      { responseType: "text" });
+
+
   }
 }

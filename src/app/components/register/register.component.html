@@ -1,17 +1,37 @@
-<p>register works!</p>
 
-<div class="register-form">
-  <div class="form">
-    <form
-      name="form"
-      #f="ngForm"
-      (ngSubmit)="f.form.valid && onSubmit()"
-      novalidate
-      [appMatchPassword]="['password', 'confirmPassword']"
-    >
-      <div class="form-group">
-        <label for="">User Name</label>
+<div *ngIf="errorMsg" class="alert alert-danger">
+  <h1>{{ errorMsg }}</h1>
+</div>
+<div *ngIf="successMsg" class="alert alert-success">
+  <h1>{{ successMsg }}</h1>
+</div>
+<style>
+  .form-group {
+    padding: 5px 10% 5px 10%;
+  }
+</style>
+
+<p-toast *ngIf="errorMsg">{{errorMsg}}</p-toast>
+<p-toast *ngIf="successMsg">{{successMsg}}</p-toast>
+<div style="padding: 10% 10% 10% 10%" class="register-form">
+  <form
+    name="form"
+    #f="ngForm"
+    (ngSubmit)="f.form.valid && onSubmit()"
+    novalidate
+    [appMatchPassword]="['password', 'confirmPassword']"
+  >
+    <div class="form-group">
+      <h2>Add New Wallet</h2>
+      <div class="p-inputgroup">
+        <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+
         <input
+          pTooltip="Enter your username"
+          tooltipPosition="top"
+          tooltipEvent="focus"
+          pInputText
+          placeholder="User Name"
           type="text"
           class="form-control"
           name="userName"
@@ -22,19 +42,27 @@
           #username="ngModel"
           [ngClass]="{ 'is-invalid': f.submitted && username.errors }"
         />
-        <div *ngIf="f.submitted && username.errors" class="invalid-feedback">
-          <div *ngIf="username.errors['required']">User Name is required</div>
-          <div *ngIf="username.errors['minlength']">
-            User Name must be atleast 6 letters
-          </div>
-          <div *ngIf="username.errors['maxlength']">
-            User Name cannot be more than 20 characters
-          </div>
+      </div>
+      <div *ngIf="f.submitted && username.errors" class="invalid-feedback">
+        <div *ngIf="username.errors['required']">User Name is required</div>
+        <div *ngIf="username.errors['minlength']">
+          User Name must be atleast 6 letters
+        </div>
+        <div *ngIf="username.errors['maxlength']">
+          User Name cannot be more than 20 characters
         </div>
       </div>
-      <div class="form-group">
-        <label for="">ID</label>
+    </div>
+    <div class="form-group">
+      <div class="p-inputgroup">
+        <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+
         <input
+          pInputText
+          pTooltip="Enter your user ID"
+          tooltipPosition="top"
+          tooltipEvent="focus"
+          placeholder="User ID "
           type="text"
           class="form-control"
           name="id"
@@ -45,20 +73,28 @@
           #id="ngModel"
           [ngClass]="{ 'is-invalid': f.submitted && id.errors }"
         />
-        <div
-          *ngIf="'(f.submitted && id.errors) || (id.touched && id.errors)'"
-          class="invalid-feedback"
-        >
-          <div *ngIf="id.errors['required']">ID is required</div>
-          <div *ngIf="id.errors['minlength']">ID must be atleast 3 letters</div>
-          <div *ngIf="username.errors['maxlength']">
-            ID cannot be more than 5 characters
-          </div>
+      </div>
+      <div
+        *ngIf="'(f.submitted && id.errors) || (id.touched && id.errors)'"
+        class="invalid-feedback"
+      >
+        <div *ngIf="id.errors['required']">ID is required</div>
+        <div *ngIf="id.errors['minlength']">ID must be atleast 3 letters</div>
+        <div *ngIf="username.errors['maxlength']">
+          ID cannot be more than 5 characters
         </div>
       </div>
-      <div class="form-group">
-        <label for="password">Password</label>
+    </div>
+    <div class="form-group">
+      <div class="p-inputgroup">
+        <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
+
         <input
+          pInputText
+          pTooltip="Enter your password"
+          tooltipPosition="top"
+          tooltipEvent="focus"
+          placeholder="Password"
           type="password"
           name="password"
           [(ngModel)]="form.password"
@@ -66,27 +102,30 @@
           minlength="8"
           maxlength="25"
           #password="ngModel"
-          
           [ngClass]="{ 'is-invalid': f.submitted && password.errors }"
         />
-        
-        <div *ngIf="f.submitted && password.errors" class="invalid-feedback">
-          <div *ngIf="password.errors['required']">Password is required</div>
-          <div *ngIf="password.errors['minlength']">
-            Password must be atleast 8 letters
-          </div>
-          <div *ngIf="password.errors['maxlength']">
-            Password cannot be more than 25 characters
-          </div>
-          <div *ngIf="password.errors['format']">
-            Password must contain atleast one special character
-          </div>
-        </div>
       </div>
 
-      <div class="form-group">
-        <label for="">Confirm Password</label>
+      <div *ngIf="f.submitted && password.errors" class="invalid-feedback">
+        <div *ngIf="password.errors['required']">Password is required</div>
+        <div *ngIf="password.errors['minlength']">
+          Password must be atleast 8 letters
+        </div>
+        <div *ngIf="password.errors['maxlength']">
+          Password cannot be more than 25 characters
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="p-inputgroup">
+        <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
+
         <input
+          pTooltip="Re Enter your password"
+          tooltipPosition="top"
+          tooltipEvent="focus"
+          pInputText
+          placeholder="Confirm Password"
           type="password"
           name="confirmPassword"
           class="form-control"
@@ -97,23 +136,29 @@
           #confirmPassword="ngModel"
           [ngClass]="{ 'is-invalid': f.submitted && confirmPassword.errors }"
         />
-        <div *ngIf="f.submitted && confirmPassword.errors" class="invalid-feedback">
-          <div *ngIf="confirmPassword.errors['required']">Password is required</div>
-          <div *ngIf="confirmPassword.errors['minlength']">
-            confirm Password must be atleast 8 letters
-          </div>
-          <div *ngIf="confirmPassword.errors['maxlength']">
-            confirm Password cannot be more than 25 characters
-          </div>
-          <div *ngIf="confirmPassword.errors['matching']">
-            Confirm Password must be same as password 
-          </div>
+      </div>
+      <div
+        *ngIf="f.submitted && confirmPassword.errors"
+        class="invalid-feedback"
+      >
+        <div *ngIf="confirmPassword.errors['required']">
+          Confirm Password is required
+        </div>
+        <div *ngIf="confirmPassword.errors['minlength']">
+          Confirm Password must be atleast 8 letters
+        </div>
+        <div *ngIf="confirmPassword.errors['maxlength']">
+          Confirm Password cannot be more than 25 characters
+        </div>
+        <div *ngIf="confirmPassword.errors['matching']">
+          Confirm Password must be same as password
         </div>
       </div>
-
-      <div class="form-group">
-        <button type="submit" class="btn btn-primary">Register</button>
-      </div>
-    </form>
-  </div>
+      <p>If you already have an account. Use the Login page on the top bar.</p>
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">Register</button>
+      <button type="button" (click)="redirectToSignIn()" class="btn btn-success">Sign In</button>
+    </div>
+  </form>
 </div>

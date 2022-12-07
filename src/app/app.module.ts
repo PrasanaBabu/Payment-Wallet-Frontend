@@ -13,11 +13,25 @@ import { TransferComponent } from './components/transfer/transfer.component';
 import { UnregisterComponent } from './components/unregister/unregister.component';
 import { FormsModule } from '@angular/forms';
 import {ButtonModule} from 'primeng/button';
+import { HttpClientModule } from '@angular/common/http';
+
 
 
 import { PasswordModule } from "primeng/password";
 import { DividerModule } from "primeng/divider";
 import { MatchPasswordDirective } from './directives/match-password.directive';
+
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {ConfirmationService, MessageService} from 'primeng/api';
+import { MessagesModule } from 'primeng/messages';
+
+
+import {InputTextModule} from 'primeng/inputtext';
+
+import {TooltipModule} from 'primeng/tooltip';
+
+import {ToastModule} from 'primeng/toast';
+import { UserAuthGuard } from './guard/user-auth.guard';
 
 @NgModule({
   declarations: [
@@ -34,14 +48,23 @@ import { MatchPasswordDirective } from './directives/match-password.directive';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ConfirmDialogModule,
+
     FormsModule,
     ButtonModule,
     PasswordModule,
     DividerModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule,
+    MessagesModule,
+
+    InputTextModule,
+    TooltipModule,
+
+    ToastModule
 
   ],
-  providers: [],
+  providers: [UserAuthGuard,ConfirmationService, MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
