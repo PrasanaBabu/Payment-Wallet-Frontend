@@ -10,5 +10,9 @@ export class AppComponent {
   title = 'payment-wallet-frontend';
 
   activeUser = WalletService.userActive;
+  constructor(){
+    this.activeUser = WalletService.userActive;
+    console.log('active usser = '  + this.activeUser)
+  }
   
 }

@@ -32,10 +32,7 @@ export class UnregisterComponent {
   callRegister() {
     this.router.navigate(['wallet/register']);
   }
-
   onSubmit(): void {
-
-
 
     console.log("INside onSubmit");
     console.log(JSON.stringify(this.form));
@@ -55,7 +52,6 @@ export class UnregisterComponent {
           }
           else {
             this.failToast();
-
           }
           console.log("data portion " + this.msg);
         },
@@ -65,9 +61,7 @@ export class UnregisterComponent {
           this.serverErrorToast();
           this.msg = "";
         },
-
         complete: () => { }
-
       })
   }
 

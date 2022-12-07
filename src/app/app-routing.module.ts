@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddFundComponent } from './components/add-fund/add-fund.component';
+import { BalanceComponent } from './components/balance/balance.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path: 'wallet/withdraw', component: WithdrawComponent, canActivate:[UserAuthGuard]},
   {path: 'wallet/transfer', component: TransferComponent, canActivate:[UserAuthGuard]},
   {path: 'wallet/unregister', component:UnregisterComponent, canActivate:[UserAuthGuard]},
+  {path: 'wallet/check', component:BalanceComponent, canActivate:[UserAuthGuard]}
 ];
 
 @NgModule({

@@ -1,0 +1,65 @@
+
+<style>
+    .form-group {
+      padding: 5px 10% 5px 10%;
+    }
+  </style>
+
+  <p-toast></p-toast>
+
+  <div style="padding: 10% 10% 10% 10%" class="add-form">
+    
+      <div class="form-group">
+        <h2> Your Wallet Details</h2>
+        <div class="p-inputgroup">
+          <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+          <input
+            disabled
+            type="text"
+            pTooltip="Enter your user ID"
+            disabled
+            tooltipPosition="top"
+            tooltipEvent="focus"
+            [(ngModel)]="userId"
+            name="userId"
+            pInputText
+            #id="ngModel"
+            required
+            placeholder="User ID"
+
+          />
+        </div>
+  
+      </div>
+  
+      <div class="form-group">
+        <div class="p-inputgroup">
+          <span class="p-inputgroup-addon">$</span>
+          <input
+            type="text"
+            disabled
+            pTooltip="Balance"
+            tooltipPosition="top"
+            tooltipEvent="focus"
+            name="balance"
+            [(ngModel)]="balance"
+            pInputText
+            #amount="ngModel"
+            required
+            placeholder="Balance"
+          />
+          <span class="p-inputgroup-addon">.00</span>
+        </div>
+     
+  
+      <p-confirmDialog
+        header="Confirmation"
+        icon="pi pi-exclamation-triangle"
+      ></p-confirmDialog>
+  
+      <div class="form-group">
+        <button (click)="showBalance()" pButton icon="pi pi-check" label="Show Balance"></button>
+      </div>
+
+  </div>
+  

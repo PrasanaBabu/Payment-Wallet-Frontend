@@ -3,7 +3,9 @@
       padding: 5px 10% 5px 10%;
     }
   </style>
+
   <p-toast ></p-toast>
+
   <div style="padding: 10% 10% 10% 10%" class="unRegister-form">
     <form
       name="form"
@@ -33,16 +35,6 @@
             #id="ngModel"
             [ngClass]="{ 'is-invalid': f.submitted && id.errors }"
           />
-        </div>
-        <div
-          *ngIf="f.submitted && id.errors"
-          class="invalid-feedback"
-        >
-          <div *ngIf="id.errors['required']">ID is required</div>
-          <div *ngIf="id.errors['minlength']">ID must be atleast 3 letters</div>
-          <div *ngIf="id.errors['maxlength']">
-            ID cannot be more than 5 characters
-          </div>
         </div>
       </div>
       <div class="form-group">

@@ -70,7 +70,7 @@ export class WalletService {
   public balanceCheck(id: number): Observable<any> {
     console.log("Inside balance check service");
     return this.httpClient.get(
-      "http://localhost:8080/wallet/check",
+      "http://localhost:8080/wallet/check/"+id,
       { responseType: "text" }
     );
   }

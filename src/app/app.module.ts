@@ -69,4 +69,7 @@ import { BalanceComponent } from './components/balance/balance.component';
   providers: [UserAuthGuard,ConfirmationService, MessageService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+  
+ }
