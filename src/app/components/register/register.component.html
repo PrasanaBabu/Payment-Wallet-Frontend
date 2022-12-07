@@ -2,17 +2,14 @@
 <div *ngIf="errorMsg" class="alert alert-danger">
   <h1>{{ errorMsg }}</h1>
 </div>
-<div *ngIf="successMsg" class="alert alert-success">
-  <h1>{{ successMsg }}</h1>
-</div>
+
 <style>
   .form-group {
     padding: 5px 10% 5px 10%;
   }
 </style>
 
-<p-toast *ngIf="errorMsg">{{errorMsg}}</p-toast>
-<p-toast *ngIf="successMsg">{{successMsg}}</p-toast>
+<p-toast ></p-toast>
 <div style="padding: 10% 10% 10% 10%" class="register-form">
   <form
     name="form"

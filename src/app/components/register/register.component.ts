@@ -34,7 +34,6 @@ export class RegisterComponent {
 
   redirectToSignIn(){
     this.router.navigate(['wallet/login']);
-  
   }
 
   onSubmit(): void {
@@ -44,43 +43,66 @@ export class RegisterComponent {
     this.newWallet.name = this.form.username;
     this.newWallet.password = this.form.password;
     this.newWallet.balance = 0;
-    // "id" : this.form.id,
-    // "name": this.form.username,
-    // "password": this.form.password
+    
     this.walletService
       .addNewUser(this.newWallet)
       .subscribe(
         {
           next: (data) => {
+            if(data == "Added Successfully") {
             this.successMsg = "Added New User Successfully";
             this.errorMsg = ""
-            console.log("going inside data")
+            this.successToast();
+            }
+            else if(data.includes('Redundant Id')){
+              this.errorMsg = "Redundant Id";
+              this.invalidIdToast();
+
+            }
           },
           error: (err) => {
             this.errorMsg = "Something Went Wrong Try again after some time"
             this.successMsg = "";
-            console.log("goin ins error " + this.errorMsg)
-            if(err){
-              console.log("goin inside if")
-              this.addSingle();
-            }
+            this.serverErrorToast();
           }
         });
-
-
   }
-
   onReset(form: NgForm): void {
     form.reset();
   }
 
-  addSingle() {
+  invalidIdToast(){
+
+    this.messageService.add(
+      {
+        severity: 'info',
+        summary: 'ID Exists',
+        detail: 'ID already exists try logging in or give another ID'
+      }
+    );
+  }
+
+  successToast(){
+
+    this.messageService.add(
+      {
+        severity: 'success',
+        summary: 'Register Success',
+        detail: 'You may now Login with ID and password'
+      }
+    );
+
+    this.router.navigate(['wallet/login']);
+  }
+
+  serverErrorToast() {
     this.messageService.add(
       {
         severity: 'error',
         summary: 'Internal Error ',
         detail: 'Try after sometime. If problem persists contact developer .'
-      });
+      }
+    );
   }
 
 }

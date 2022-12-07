@@ -52,7 +52,7 @@ export class LoginComponent {
             this.successToast();
           }
           else {
-            this.failToast;
+            this.failToast();
             
           }
           console.log("data portion " + this.msg);

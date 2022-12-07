@@ -9,15 +9,13 @@
 <div *ngIf="msg" class="alert alert-success">
   <h1>{{ msg }}</h1>
 </div>
-<p-toast *ngIf="errorMsg">{{errorMsg}}</p-toast>
-<p-toast *ngIf="msg">{{msg}}</p-toast>
+<p-toast></p-toast>
 <div style="padding: 10% 10% 10% 10%" class="login-form">
   <form
     name="form"
     #f="ngForm"
-    (ngSubmit)="onSubmit()"
+    (ngSubmit)="f.form.valid && onSubmit()"
     novalidate
-    [appMatchPassword]="['password', 'confirmPassword']"
   >  
       <div class="form-group">
         <h2>Login User</h2>
@@ -36,6 +34,7 @@
             name="id"
             [(ngModel)]="form.id"
             required
+            minlength="1"
             #id="ngModel"
             [ngClass]="{ 'is-invalid': f.submitted && id.errors }"
           />
@@ -45,6 +44,8 @@
           class="invalid-feedback"
         >
           <div *ngIf="id.errors['required']">ID is required</div>
+          <div *ngIf="id.errors['minlength']">ID is required</div>
+
         </div>
       </div>
       <div class="form-group">
@@ -61,6 +62,7 @@
             name="password"
             [(ngModel)]="form.password"
             required
+            minlength="1"
             #password="ngModel"
             [ngClass]="{ 'is-invalid': f.submitted && password.errors }"
           />
@@ -68,7 +70,10 @@
 
         <div *ngIf="f.submitted && password.errors" class="invalid-feedback">
           <div *ngIf="password.errors['required']">Password is required</div>
+          <div *ngIf="password.errors['minlength']">Password is required</div>
+
         </div>
+
       </div>
       <div class="form-group">
         <button type="submit" class="btn btn-success">Sign In</button>

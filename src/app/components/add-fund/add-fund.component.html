@@ -1,4 +1,4 @@
-<p>add-fund works!</p>
+
 <style>
   .form-group {
     padding: 5px 10% 5px 10%;
@@ -6,7 +6,12 @@
 </style>
 
 <div style="padding: 10% 10% 10% 10%" class="login-form">
-  <form name="form" #f="ngForm" (ngSubmit)="confirm()" novalidate>
+  <form
+    name="form" 
+    #f="ngForm" 
+    (ngSubmit)="f.form.valid && confirm()" 
+    novalidate
+  >
     <div class="form-group">
       <h2>Add Fund To Your Wallet</h2>
       <div class="p-inputgroup">
@@ -74,8 +79,5 @@
 
     <p-messages [value]="msgs"></p-messages>
 
-    <div *ngIf="success">
-      <p>{{ success }}</p>
-    </div>
   </form>
 </div>
