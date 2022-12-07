@@ -34,6 +34,8 @@ import {ToastModule} from 'primeng/toast';
 import { UserAuthGuard } from './guard/user-auth.guard';
 import { BalanceComponent } from './components/balance/balance.component';
 
+import { SplitButtonModule } from 'primeng/splitbutton';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,8 +65,9 @@ import { BalanceComponent } from './components/balance/balance.component';
     InputTextModule,
     TooltipModule,
 
-    ToastModule
+    ToastModule,
 
+    SplitButtonModule,
   ],
   providers: [UserAuthGuard,ConfirmationService, MessageService],
   bootstrap: [AppComponent]

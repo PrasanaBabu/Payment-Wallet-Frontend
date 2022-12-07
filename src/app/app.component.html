@@ -6,9 +6,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-link active" aria-current="page" href="wallet/home">Home</a>
-        <a class="nav-link" href="wallet/login">Login</a>
-        <a class="nav-link" routerLink="wallet/register">Register</a>
+        <a class="nav-link active" href="wallet/home">Home</a>
         <a class="nav-link" routerLink="wallet/addfund">Add Fund</a>
         <a class="nav-link" routerLink="wallet/withdraw">Withdraw</a>
         <a class="nav-link" routerLink="wallet/unregister">Delete</a>
@@ -16,6 +14,22 @@
         <a class="nav-link" routerLink="wallet/check">Wallet Details</a>
       </div>
     </div>
+    <div *ngIf="checkItem()">
+      
+    <p-splitButton
+        
+        icon="pi pi-power-off"
+        
+        [model]="itemsLoggedIn"
+      ></p-splitButton>
+    </div>
+    <div *ngIf="!checkItem()">
+      <a class="nav-link" routerLink="wallet/check"><button class="btn btn-outline-success" type="submit">Log In</button></a>
+      </div>
+      <div *ngIf="!checkItem()">
+      <a class="nav-link" routerLink="wallet/register"><button class="btn btn-outline-primary" type="submit">Register</button></a>
+      </div>
+
   </div>
 </nav>
 

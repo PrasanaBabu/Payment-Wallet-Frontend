@@ -32,9 +32,6 @@ export class LoginComponent {
   }
 
   onSubmit(): void {
-
-
-
     console.log("INside onSubmit");
     console.log(JSON.stringify(this.form));
     this.newWallet.id = parseInt(this.form.id);
@@ -77,6 +74,8 @@ export class LoginComponent {
         detail: 'You are now logged in you may procedd to use other services of the application .'
       });
       WalletService.setCurrectUser(this.newWallet.id);
+  
+      this.router.navigate(['home'])
   }
   failToast() {
     this.messageService.add(
