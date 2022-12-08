@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { WalletService } from 'src/app/services/wallet.service';
 
 @Component({
   selector: 'app-home',
@@ -7,4 +8,7 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
 
+  check(){
+    return WalletService.userActive;
+  }
 }

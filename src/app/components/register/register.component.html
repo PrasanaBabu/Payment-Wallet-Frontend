@@ -1,4 +1,3 @@
-
 <div *ngIf="errorMsg" class="alert alert-danger">
   <h1>{{ errorMsg }}</h1>
 </div>
@@ -9,7 +8,7 @@
   }
 </style>
 
-<p-toast ></p-toast>
+<p-toast></p-toast>
 <div style="padding: 10% 10% 10% 10%" class="register-form">
   <form
     name="form"
@@ -71,10 +70,7 @@
           [ngClass]="{ 'is-invalid': f.submitted && id.errors }"
         />
       </div>
-      <div
-        *ngIf="f.submitted && id.errors"
-        class="invalid-feedback"
-      >
+      <div *ngIf="f.submitted && id.errors" class="invalid-feedback">
         <div *ngIf="id.errors['required']">ID is required</div>
         <div *ngIf="id.errors['minlength']">ID must be atleast 3 letters</div>
         <div *ngIf="username.errors['maxlength']">
@@ -151,11 +147,22 @@
           Confirm Password must be same as password
         </div>
       </div>
-      <p>If you already have an account. Use the Login page on the top bar.</p>
+      <p>
+        If you already have an account, login using your credentials by clicking
+        the sign in button.
+      </p>
     </div>
     <div class="form-group">
-      <button type="submit" class="btn btn-primary">Register</button>
-      <button type="button" (click)="redirectToSignIn()" class="btn btn-success">Sign In</button>
+      <button type="submit" class="btn btn-primary" style="margin-right: 10px">
+        Register
+      </button>
+      <button
+        type="button"
+        (click)="redirectToSignIn()"
+        class="btn btn-success"
+      >
+        Sign In
+      </button>
     </div>
   </form>
 </div>

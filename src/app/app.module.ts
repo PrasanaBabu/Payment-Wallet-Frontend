@@ -35,6 +35,7 @@ import { UserAuthGuard } from './guard/user-auth.guard';
 import { BalanceComponent } from './components/balance/balance.component';
 
 import { SplitButtonModule } from 'primeng/splitbutton';
+import { ActiveHomeComponent } from './components/active-home/active-home.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { SplitButtonModule } from 'primeng/splitbutton';
     TransferComponent,
     UnregisterComponent,
     MatchPasswordDirective,
-    BalanceComponent
+    BalanceComponent,
+    ActiveHomeComponent
   ],
   imports: [
     BrowserModule,

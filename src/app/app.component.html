@@ -4,14 +4,19 @@
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div *ngIf="checkItem()" class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-link active" href="wallet/home">Home</a>
+        <a class="nav-link active" href="wallet/activehome">Home</a>
         <a class="nav-link" routerLink="wallet/addfund">Add Fund</a>
         <a class="nav-link" routerLink="wallet/withdraw">Withdraw</a>
         <a class="nav-link" routerLink="wallet/unregister">Delete</a>
         <a class="nav-link" routerLink="wallet/transfer">Transfer</a>
         <a class="nav-link" routerLink="wallet/check">Wallet Details</a>
+      </div>
+    </div>
+    <div *ngIf="!checkItem()" class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link active" href="wallet/home">Home</a>
       </div>
     </div>
     <div *ngIf="checkItem()">
@@ -23,8 +28,8 @@
         [model]="itemsLoggedIn"
       ></p-splitButton>
     </div>
-    <div *ngIf="!checkItem()">
-      <a class="nav-link" routerLink="wallet/check"><button class="btn btn-outline-success" type="submit">Log In</button></a>
+    <div *ngIf="!checkItem()" style="padding-right: 10px;">
+      <a class="nav-link" routerLink="wallet/login"><button class="btn btn-outline-success" type="submit">Sign In</button></a>
       </div>
       <div *ngIf="!checkItem()">
       <a class="nav-link" routerLink="wallet/register"><button class="btn btn-outline-primary" type="submit">Register</button></a>
