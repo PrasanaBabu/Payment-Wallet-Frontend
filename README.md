@@ -1,5 +1,7 @@
 # PaymentWalletFrontend
 
+To view the springboot backend application visit https://github.com/PrasanaBabu/Payment-Wallet-Application
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.0.
 
 ## Development server
